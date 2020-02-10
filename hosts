@@ -1,0 +1,5 @@
+[wordpress]
+192.168.99.148 ansible_user=fedora ansible_ssh_private_key_file="~/.ssh/id_rsa"
+
+[mysql]
+192.168.99.149 ansible_user=fedora ansible_ssh_private_key_file="~/.ssh/id_rsa"

@@ -1,0 +1,42 @@
+
+PLAY [all] *************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************
+ok: [192.168.99.148]
+
+TASK [Instala pacotes de dependencias do sistema operacional] **********************************
+ok: [192.168.99.148] => (item=['php', 'httpd', 'https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-31.noarch.rpm', 'https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-31.noarch.rpm', 'http://rpms.famillecollet.com/fedora/remi-release-31.rpm', 'vim', 'bash-completion', 'curl', 'wget', 'telnet', 'mariadb-server', 'mysql-connector-python*', 'python3-mysql', 'tar', 'gzip', 'bzip2', 'mod_ssl', 'php-mysqlnd'])
+
+TASK [Inicia serviços] *************************************************************************
+ok: [192.168.99.148] => (item=httpd)
+ok: [192.168.99.148] => (item=mariadb)
+
+TASK [Make sure a service is running] **********************************************************
+ok: [192.168.99.148]
+
+TASK [Configura mysql] *************************************************************************
+ok: [192.168.99.148]
+
+TASK [Cria usuario no MySQL] *******************************************************************
+ok: [192.168.99.148]
+
+TASK [Baixa wordpress] *************************************************************************
+ok: [192.168.99.148]
+
+TASK [Descompactar arquivo] ********************************************************************
+ok: [192.168.99.148]
+
+TASK [Copiar arquivo] **************************************************************************
+changed: [192.168.99.148]
+
+TASK [configura o wp-config com as entradas do banco de dados] *********************************
+changed: [192.168.99.148] => (item={'regex': 'database_name_here', 'value': 'wordpress_db'})
+changed: [192.168.99.148] => (item={'regex': 'username_here', 'value': 'wordpress_user'})
+changed: [192.168.99.148] => (item={'regex': 'password_here', 'value': '12345'})
+
+TASK [Configura Apache para servir o wordpress] ************************************************
+ok: [192.168.99.148]
+
+PLAY RECAP *************************************************************************************
+192.168.99.148             : ok=11   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
